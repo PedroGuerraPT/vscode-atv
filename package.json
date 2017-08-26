@@ -1,0 +1,60 @@
+{
+    "name": "ant-tree-viewer",
+    "displayName": "Ant Tree Viewer",
+    "description": "Displays a sidebar in Visual Studio Code with an Apache Ant XML node tree",
+    "version": "0.0.1",
+    "publisher": "pedroguerra",
+    "author": {
+        "name": "Pedro Guerra",
+        "url": "https://github.com/PedroGuerraPT"
+    },
+    "icon": "resources/atv_logo.png",
+    "galleryBanner": {
+        "color": "#252627",
+        "theme": "light"
+    },
+    "homepage": "https://github.com/PedroGuerraPT/vscode-atv",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PedroGuerraPT/vscode-atv.git"
+    },
+    "bugs": {
+        "url": "https://github.com/PedroGuerraPT/vscode-atv/issues"
+    },
+    "engines": {
+        "vscode": "^1.15.0"
+    },
+    "categories": [
+        "Languages",
+        "Other"
+    ],
+    "main": "./Extension",
+    "contributes": {
+        "views": {
+            "explorer": [
+                {
+                    "id": "xmlTreeView",
+                    "name": "Ant Tree View"
+                }
+            ]
+        }
+    },
+    "activationEvents": [
+        "onLanguage:xml",
+        "onLanguage:xsl"
+    ],
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.32",
+        "@types/node": "^6.0.40",
+        "eslint": "^3.19.0",
+        "mocha": "^2.3.3",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "xmldom": "^0.1.22",
+        "xpath": "^0.0.9"
+    }
+}
