@@ -10,7 +10,7 @@
     },
     "icon": "resources/atv_logo.png",
     "galleryBanner": {
-        "color": "#252627",
+        "color": "#f2f2f2",
         "theme": "light"
     },
     "homepage": "https://github.com/PedroGuerraPT/vscode-atv",
@@ -27,6 +27,14 @@
     "categories": [
         "Languages",
         "Other"
+    ],
+    "tags": [
+        "xml",
+        "ant",
+        "sidebar",
+        "build",
+        "compile",
+        "xml"
     ],
     "main": "./Extension",
     "contributes": {

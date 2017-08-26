@@ -1,4 +1,4 @@
-# Ant Tree View for Visual Studio Code
+# Ant Tree Viewer for Visual Studio Code
 This project is based on the [XML Tools for Visual Studio Code](https://github.com/DotJoshJohnson/vscode-xml) extension made by [DotJoshJohnson](https://github.com/DotJoshJohnson).
 
 ## Release Notes
