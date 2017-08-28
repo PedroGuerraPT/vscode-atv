@@ -2,7 +2,7 @@
     "name": "ant-tree-viewer",
     "displayName": "Ant Tree Viewer",
     "description": "Displays a sidebar in Visual Studio Code with an Apache Ant XML node tree",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "pedroguerra",
     "author": {
         "name": "Pedro Guerra",
