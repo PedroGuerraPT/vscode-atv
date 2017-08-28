@@ -5,7 +5,7 @@ const path = require("path");
 let DOMParser = require("xmldom").DOMParser;
 var targets = {};
 
-class XmlTreeViewDataProvider {
+class AntTreeViewDataProvider {
     constructor(_context) {
         this._context = _context;
 
@@ -109,4 +109,4 @@ class XmlTreeViewDataProvider {
         this._onDidChangeTreeData.fire();
     }
 }
-exports.XmlTreeViewDataProvider = XmlTreeViewDataProvider;
+exports.AntTreeViewDataProvider = AntTreeViewDataProvider;

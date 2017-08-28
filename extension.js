@@ -1,12 +1,12 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const vsc = require("vscode");
-const XmlTreeView = require("./providers/XmlTreeView");
+const AntTreeView = require("./providers/AntTreeView");
 function activate(ctx) {
     exports.GlobalState = ctx.globalState;
     exports.WorkspaceState = ctx.workspaceState;
     ctx.subscriptions.push(vsc.window.onDidChangeActiveTextEditor(_handleChangeActiveTextEditor), vsc.window.onDidChangeTextEditorSelection(_handleChangeTextEditorSelection));
-    ctx.subscriptions.push(vsc.window.registerTreeDataProvider("xmlTreeView", new XmlTreeView.XmlTreeViewDataProvider(ctx)));
+    ctx.subscriptions.push(vsc.window.registerTreeDataProvider("antTreeView", new AntTreeView.AntTreeViewDataProvider(ctx)));
 }
 exports.activate = activate;
 function _handleContextChange(editor) {
