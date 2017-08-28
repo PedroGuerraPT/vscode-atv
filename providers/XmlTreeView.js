@@ -11,10 +11,10 @@ class XmlTreeViewDataProvider {
         
         this._onDidChangeTreeData = new vsc.EventEmitter();
         this.onDidChangeTreeData = this._onDidChangeTreeData.event;
-        vsc.window.onDidChangeActiveTextEditor((editor) => {
+        vsc.window.onDidChangeActiveTextEditor(() => {
             this._refreshTree();
         });
-        vsc.workspace.onDidChangeTextDocument((e) => {
+        vsc.workspace.onDidChangeTextDocument(() => {
             this._refreshTree();
         });
     }
@@ -79,7 +79,7 @@ class XmlTreeViewDataProvider {
         return array;
     }
 
-    _getIcon(element) {
+    _getIcon() {
         let type = "element";
         let icon = {
             dark: this._context.asAbsolutePath(path.join("resources", "icons", `${type}.dark.svg`)),
