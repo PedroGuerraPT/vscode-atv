@@ -28,8 +28,9 @@
         "Languages",
         "Other"
     ],
-    "tags": [
+    "keywords": [
         "xml",
+        "script",
         "ant",
         "sidebar",
         "build",
