@@ -8,7 +8,7 @@ var targets = {};
 class XmlTreeViewDataProvider {
     constructor(_context) {
         this._context = _context;
-        
+
         this._onDidChangeTreeData = new vsc.EventEmitter();
         this.onDidChangeTreeData = this._onDidChangeTreeData.event;
         vsc.window.onDidChangeActiveTextEditor(() => {
@@ -27,7 +27,7 @@ class XmlTreeViewDataProvider {
         }
         if (element) {
             return [].concat(this._getChildElementArray(element));
-        }   
+        }
         else if (this._xmlDocument) {
             return [this._xmlDocument.lastChild];
         }
@@ -37,16 +37,19 @@ class XmlTreeViewDataProvider {
     }
     getTreeItem(element) {
         let treeItem = new vsc.TreeItem(targets[element]);
-        if (this._getChildElementArray(element).length > 0) {
-            treeItem.collapsibleState = vsc.TreeItemCollapsibleState.Collapsed;
+        if (this._getChildElementArray(element).length > 0){
+            if (element.nodeName == 'project')
+                treeItem.collapsibleState = vsc.TreeItemCollapsibleState.Expanded;
+            else if (element.nodeName == 'target')
+                treeItem.collapsibleState = vsc.TreeItemCollapsibleState.Collapsed;
         }
         treeItem.command = {
             command: "revealLine",
             title: "",
             arguments: [{
-                    lineNumber: element.lineNumber - 1,
-                    at: "top"
-                }]
+                lineNumber: element.lineNumber - 1,
+                at: "top"
+            }]
         };
         treeItem.iconPath = this._getIcon(element);
         return treeItem;
@@ -57,7 +60,6 @@ class XmlTreeViewDataProvider {
         }
         let array = new Array();
         for (let i = 0; i < node.attributes.length; i++) {
-            console.log(node.nodeName);
             array.push(node.attributes[i]);
         }
         return array;
@@ -68,19 +70,28 @@ class XmlTreeViewDataProvider {
             return [];
         }
         var array = new Array();
-        targets[node] = node.getAttribute('name');
+        if (node.nodeName == 'project')
+            targets[node] = node.getAttribute('name');
         for (let i = 0; i < node.childNodes.length; i++) {
             let child = node.childNodes[i];
-            if (child.nodeName == "target") {
+            if (child.nodeName == "target" && child.getAttribute('name') != "") {
                 targets[child] = child.getAttribute('name');
+                array.push(child);
+            }
+            else if (child.nodeName == "antcall" && child.getAttribute('target') != null) {
+                targets[child] = child.getAttribute('target');
                 array.push(child);
             }
         }
         return array;
     }
 
-    _getIcon() {
-        let type = "element";
+    _getIcon(element) {
+        let type = "target";
+        if (element.nodeName == 'antcall')
+            type = "antcall";
+        else if (element.nodeName == 'project')
+            type = "ant";
         let icon = {
             dark: this._context.asAbsolutePath(path.join("resources", "icons", `${type}.dark.svg`)),
             light: this._context.asAbsolutePath(path.join("resources", "icons", `${type}.light.svg`))
